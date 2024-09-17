@@ -89,10 +89,48 @@ bool DoublyLinkedList<Type>::
     return NULL;
 }//end search
 
+/**
+ * @brief Insert into first position in list. Make sure to handle inserting into both 
+ * empty and non-empty list. When insertign a new node, re-point the head pointer to
+ * the new node. The tail will be pointed to the new node if this this was an empty list.
+ * @tparam Type data type.
+ * @param newItem new data.
+ */
 template <class Type>
-void DoublyLinkedList<Type>::insertFirst(const Type& newItem){
+void DoublyLinkedList<Type>::insertFirst(const Type& newItem) {
+//TODO: COMPLETE THIS FUNCTION! DONE
     
-    //TODO: COMPLETE THIS FUNCTION!
+    // create a new node and initialize data, and next and prev to NULL
+    NodeType<Type>* newNode = new NodeType<Type>;
+    newNode->data = newItem;
+    newNode->next = NULL;
+    newNode->prev = NULL;
+
+
+    // if no nodes exist yet, set the head and tail to the new node.
+    if (this->isEmptyList()) {
+
+        this->tail = newNode;
+
+    } else {
+
+        // if nodes exist, make the old head point back to new node
+        NodeType<Type>* oldHead = this->head;
+        oldHead->prev = newNode;
+
+        // newNode will be the new head, so its next is the current head
+        newNode->next = oldHead;
+
+    }
+
+    // re-point head to newNode, common to both cases
+    this->head = newNode;
+
+    // increment count
+    this->count += 1;
+
+    return;
+
 }
 
 template <class Type>
