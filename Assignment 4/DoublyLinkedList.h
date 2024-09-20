@@ -136,7 +136,27 @@ void DoublyLinkedList<Type>::insertFirst(const Type& newItem) {
 template <class Type>
 void DoublyLinkedList<Type>::insertLast(const Type& newItem){
     //TODO: COMPLETE THIS FUNCTION!
+    NodeType<Type>* newNode = new NodeType<Type>;
+    newNode->data = newItem;
 
+    newNode->next = NULL;
+    newNode->prev = NULL;
+
+    if (this->isEmptyList()){
+
+        this->tail = newNode; // if list is empty, set the head and tail to the new node
+        this->head = newNode;
+    }
+    else{ 
+        NodeType<Type>* oldTail = this->tail;
+        oldTail->next = newNode; // the old tail will point to the next node if there is an existing list
+        newNode->prev = oldTail; // the previous node will point to the old tail
+        this->tail = newNode; // the tail will update into the new node
+    }
+
+    this->count += 1;
+
+    return;
 }
 
 template <class Type>
