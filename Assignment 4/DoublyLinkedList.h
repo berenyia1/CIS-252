@@ -162,7 +162,34 @@ void DoublyLinkedList<Type>::insertLast(const Type& newItem){
 template <class Type>
 void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
     //TODO: COMPLETE THIS FUNCTION!
+    NodeType<Type>* newNode = new NodeType<Type>;
+    newNode->data = newItem;
 
+    newNode->next = NULL;
+    newNode->prev = NULL;
+
+    if (index <= 0){ // if the index is 0 or less it will insert the node in the beginning
+        insertFirst(newItem);
+        return;
+    }
+    else if (index >= this->count){ // if the index is the more or the same as the count, it will insert the node at the end
+        insertLast(newItem);
+        return;
+    }
+    else{
+        NodeType<Type>* current = this->head;
+        
+        for (int i = 0; i < index - 1 ; i++){
+        current = current->next; // traverses the list to point the node at the certain index
+        }
+
+        newNode->next = current->next; 
+        newNode->prev = current; // the previous node is pointed to the node before the next current node
+        current->next->prev = newNode; // the node after the newNode will point its previous to the new node
+        current->next = newNode; // current pointer will now point to the new node
+}
+    this->count+=1;
+    return;
 }
 
 template <class Type>
