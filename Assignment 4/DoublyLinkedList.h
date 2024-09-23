@@ -195,7 +195,37 @@ void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
 template <class Type>
 void DoublyLinkedList<Type>::deleteNode(const Type& deleteItem){
     //TODO: COMPLETE THIS FUNCTION!
+    if (this-> isEmptyList()){
+        cout << "List is Empty";
+    }
 
+    NodeType<Type>* current = this->head;
+    
+    while (current != NULL && current->data != deleteItem){
+        current = current->next; // traverses the list
+    }
+
+    if (current == NULL){
+        cout << "Item to delete not found in list";
+    }
+
+   // if the head is the item we want to delete:
+    if (current == this->head){ 
+        this->head = current->next; // moves the head to the next node
+        this->head->prev = NULL; // if the new head is a node then it makes the old head into NULL
+
+    // if the tail is the item we want to delete:
+    } else if (current == this->tail){
+        this->tail = current->prev; // moves the tail to the prev node
+        this->tail->next = NULL; // if the new tail is a node then it makes the old tail into NULL
+
+    } else{
+        (current->prev)->next = current->next;
+        (current->next)->prev = current->prev;
+    }
+
+    this->count -= 1;
+    return;
 }
 
 #endif /* DoublyLinkedList_h */
