@@ -3,7 +3,7 @@
 //  DoublyLinkedList
 //
 //  Created by Katz, Ariel on 2/14/23.
-//
+//  Students: Amber Nguyen, Antal Berenyi
 
 /// Testing doubly linked list
 #include <cassert>
