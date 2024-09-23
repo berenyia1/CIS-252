@@ -1,7 +1,7 @@
 //
 //  DoublyLinkedList.h
 //
-//  Blank version of file for assignment
+//  Students: Amber Nguyen, Antal Berenyi
 //
 //  Created by Katz, Ariel on 2/14/23.
 //
