@@ -45,7 +45,8 @@ public:
       //Postcondition: If found, the node containing
       //               deleteItem is deleted from the list
       //               and count is decremented by 1.
-    
+
+    Type& deleteNodeAtIndex(const int index);
 };
 
 template <class Type>
@@ -226,6 +227,46 @@ void DoublyLinkedList<Type>::deleteNode(const Type& deleteItem){
 
     this->count -= 1;
     return;
+}
+
+template <class Type>
+Type& DoublyLinkedList<Type>::deleteNodeAtIndex(const int index){
+    //TODO: COMPLETE THIS FUNCTION!
+    Type deletedNode;
+    NodeType<Type>* current = this->head;
+    
+    if (this-> isEmptyList()){
+        cout << "Error: List is Empty\n";
+        return deletedNode;
+    }
+
+    if (index < 0 || index > (this->count - 1)){
+        cout << "Error: Index out of bounds\n";
+        return deletedNode;
+
+    } else if (index == 0){ // if the index is 0 at the beginning
+        deletedNode = current->data; // will keep the data of the node we want to delete
+        this->head = current->next; // moves the head to the next node
+        this->head->prev = NULL;
+
+    } else if (index == this->count - 1){
+        current = this->tail;
+        deletedNode = current->data;
+        this->tail = current->prev; // moves the tail to the prev node
+        this->tail->next = NULL;
+
+    } else {
+        for (int i = 0; i < index; i++){
+            current = current->next; // points to the index we want to remove
+    }
+        deletedNode = current->data;
+        (current->prev)->next = current->next;
+        (current->next)->prev = current->prev;
+
+    }
+
+    this->count -= 1;
+    return deletedNode;
 }
 
 #endif /* DoublyLinkedList_h */
