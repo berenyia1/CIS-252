@@ -1,7 +1,7 @@
 //
 //  DoublyLinkedList.h
 //
-//  Students: Amber Nguyen, Antal Berenyi
+//  Blank version of file for assignment
 //
 //  Created by Katz, Ariel on 2/14/23.
 //
@@ -45,7 +45,7 @@ public:
       //Postcondition: If found, the node containing
       //               deleteItem is deleted from the list
       //               and count is decremented by 1.
-
+    
     Type& deleteNodeAtIndex(const int index);
 };
 
@@ -88,20 +88,15 @@ bool DoublyLinkedList<Type>::
         }
             
     return NULL;
+
 }//end search
 
-/**
- * @brief Insert into first position in list. Make sure to handle inserting into both 
- * empty and non-empty list. When insertign a new node, re-point the head pointer to
- * the new node. The tail will be pointed to the new node if this this was an empty list.
- * @tparam Type data type.
- * @param newItem new data.
- */
 template <class Type>
-void DoublyLinkedList<Type>::insertFirst(const Type& newItem) {
-//TODO: COMPLETE THIS FUNCTION! DONE
+void DoublyLinkedList<Type>::insertFirst(const Type& newItem){
     
-    // create a new node and initialize data, and next and prev to NULL
+    //TODO: COMPLETE THIS FUNCTION!
+
+      // create a new node and initialize data, and next and prev to NULL
     NodeType<Type>* newNode = new NodeType<Type>;
     newNode->data = newItem;
     newNode->next = NULL;
@@ -137,6 +132,7 @@ void DoublyLinkedList<Type>::insertFirst(const Type& newItem) {
 template <class Type>
 void DoublyLinkedList<Type>::insertLast(const Type& newItem){
     //TODO: COMPLETE THIS FUNCTION!
+
     NodeType<Type>* newNode = new NodeType<Type>;
     newNode->data = newItem;
 
@@ -169,12 +165,16 @@ void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
     newNode->next = NULL;
     newNode->prev = NULL;
 
-    if (index <= 0){ // if the index is 0 or less it will insert the node in the beginning
+    if (index == 0){ // if index is 0 it puts the node in the beginning
         insertFirst(newItem);
         return;
-    }
-    else if (index >= this->count){ // if the index is the more or the same as the count, it will insert the node at the end
+
+    } else if (index == this->count){ // if the index is the same as the legnth of the list it adds to the end
         insertLast(newItem);
+        return;
+
+    } else if (index < 0 || index > this->count){
+        cout << "Error: Index is out of bounds.\n";
         return;
     }
     else{
@@ -197,7 +197,8 @@ template <class Type>
 void DoublyLinkedList<Type>::deleteNode(const Type& deleteItem){
     //TODO: COMPLETE THIS FUNCTION!
     if (this-> isEmptyList()){
-        cout << "List is Empty";
+        cout << "Error: List is Empty\n";
+        return;
     }
 
     NodeType<Type>* current = this->head;
@@ -206,8 +207,9 @@ void DoublyLinkedList<Type>::deleteNode(const Type& deleteItem){
         current = current->next; // traverses the list
     }
 
-    if (current == NULL){
-        cout << "Item to delete not found in list";
+    if (current == NULL ){
+        cout << "Error: Item to delete not found in list\n";
+        return;
     }
 
    // if the head is the item we want to delete:
@@ -228,7 +230,6 @@ void DoublyLinkedList<Type>::deleteNode(const Type& deleteItem){
     this->count -= 1;
     return;
 }
-
 template <class Type>
 Type& DoublyLinkedList<Type>::deleteNodeAtIndex(const int index){
     //TODO: COMPLETE THIS FUNCTION!
@@ -267,6 +268,6 @@ Type& DoublyLinkedList<Type>::deleteNodeAtIndex(const int index){
 
     this->count -= 1;
     return deletedNode;
+    
 }
-
 #endif /* DoublyLinkedList_h */
