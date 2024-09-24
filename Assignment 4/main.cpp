@@ -108,7 +108,7 @@ bool testDeleteNode(){
 }
 
 bool testDeleteNodeAtIndex(){
-    /* cout << "Testing deleteNode" << endl;
+    cout << "Testing deleteNodeAtIndex" << endl;
      DoublyLinkedList<double> exampleList;
     exampleList.insertFirst(4.5);
     exampleList.insertFirst(4.4);
@@ -129,7 +129,7 @@ bool testDeleteNodeAtIndex(){
     exampleList.deleteNodeAtIndex(6);
     exampleList.deleteNodeAtIndex(-1);
     
-    exampleList.destroyList();*/
+    exampleList.destroyList();
     return true;
 }
 
@@ -197,12 +197,12 @@ int main()
     }
     
     ///// Test delete node by index for pairs
-    /*
+    
      if(testDeleteNodeAtIndex()) {
          cout << "deleteNodeAtIndex tests finished";
          cout << "\n\n";
      }
-     */
+     
     
     testErrorMessages();
     
@@ -212,6 +212,10 @@ int main()
     
     return 0;
 }
+
+
+
+
 
 
 
